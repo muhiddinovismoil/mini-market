@@ -24,7 +24,19 @@ export class ProductsService {
   }
 
   async findAll() {
-    const allProducts = await this.productRepo.find();
+    const allProducts = await this.productRepo.find({
+      select: {
+        id: true,
+        name: true,
+        description: true,
+        stock: true,
+        price: true,
+        image_url: true,
+        created_at: true,
+        updated_at: true,
+      },
+      relations: { category: true },
+    });
     if (allProducts.length === 0) {
       throw new NotFoundException('Products data not found');
     }
