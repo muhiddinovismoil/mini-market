@@ -3,26 +3,25 @@ import { BaseEntity } from 'src/utils/baseEntity/baseEntity';
 import { RoleEnum } from 'src/utils/enums/role.enum';
 import { ReviewEntity } from 'src/reviews/entities/review.entity';
 import { OrderEntity } from 'src/order/entities/order.entity';
-import { ColdObservable } from 'rxjs/internal/testing/ColdObservable';
 
 @Entity({ name: 'users' })
 export class UsersEntity extends BaseEntity {
   @Column({ type: 'varchar', name: 'fullname' })
   fullname: string;
 
-  @Column({ type: 'varchar', name: 'email', nullable: false })
+  @Column({ type: 'varchar', name: 'email', nullable: false, unique: true })
   email: string;
 
   @Column({ type: 'varchar', name: 'password', nullable: false })
   password: string;
 
-  @Column({ type: 'varchar', name: 'avatar' })
+  @Column({ type: 'varchar', name: 'avatar', nullable: true })
   avatar: string;
 
-  @Column({ type: 'varchar', name: 'phone_number' })
+  @Column({ type: 'varchar', name: 'phone_number', unique: true })
   phone_number: string;
 
-  @Column({ type: 'varchar', name: 'address' })
+  @Column({ type: 'varchar', name: 'address', nullable: true })
   address: string;
 
   @Column({
